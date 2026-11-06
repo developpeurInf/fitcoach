@@ -8,6 +8,8 @@ const colors = {
   danger: '#FF5A5F',
   warning: '#FFB020',
   success: '#2BD67B',
+  // Single-series chart marks: lime on dark; a darker lime on light surfaces (>= 3:1 contrast).
+  chart: { dark: '#C6F432', light: '#5E7A0A' },
   // Neutral scale used for surfaces and text in both themes.
   ink: {
     950: '#0B0D0E',

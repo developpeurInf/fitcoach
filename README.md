@@ -3,7 +3,7 @@
 Application de coaching fitness (iOS, Android, web) avec un coach IA (Claude).
 Un seul code Expo / React Native ; backend Supabase ; appels IA uniquement côté serveur.
 
-> Statut : **phase 5** (séance en cours). Le suivi des progrès, les bilans IA et le chat arrivent dans les phases suivantes.
+> Statut : **phase 6** (suivi de progression). Les bilans IA, l'adaptation hebdomadaire et le chat arrivent en phase 7.
 
 ## Stack
 
@@ -99,7 +99,7 @@ Les quotas IA se règlent dans la table `ai_limits` ; chaque fonction appelle `c
 
 ```bash
 npm run db:reset          # recrée la base locale : migrations + seed
-npm run db:test           # tests pgTAP (RLS, quotas, colonnes calculées, fin de séance et records)
+npm run db:test           # tests pgTAP (RLS, quotas, colonnes calculées, séances, records, progression)
 npm run db:types          # régénère src/types/database.ts
 npm run seed:exercises    # régénère supabase/seed.sql depuis free-exercise-db
 ```
@@ -165,6 +165,23 @@ relance sur un autre modèle au lieu d'échouer.
 - **Fin** : ressenti (1–5), énergie (1–5), commentaire, résumé (durée, séries, reps, tonnage).
   `finish_workout()` enregistre tout en une transaction, marque la séance faite et renvoie les
   records battus (charge max, 1RM estimé, reps max au poids du corps), affichés puis marqués célébrés.
+
+## Suivi de progression
+
+- **Filtres** Jour / Semaine / Mois / Trimestre / Année : chaque graphique montre les 14 derniers
+  jours, 12 semaines, 12 mois, 8 trimestres ou 5 ans ; les chiffres clés portent sur la période en cours.
+- **Données** : Postgres agrège par jour (vues `daily_training` et `exercise_daily_best`,
+  `security_invoker` donc soumises à la RLS) ; l'app regroupe les jours par période
+  (`src/features/progress/logic.ts`, testé). Les séries ne téléchargent jamais toutes les séries.
+- **Graphiques** : tonnage, assiduité (séances faites / prévues à date), 1RM estimé (Epley, meilleure
+  série de la période) par exercice, poids corporel et mensurations. Un toucher affiche la valeur,
+  les lecteurs d'écran lisent un résumé. Composant SVG maison (`react-native-svg`, déjà présent) :
+  Victory Native demande Skia (lourd et fragile sur le web) et react-native-svg-charts n'est plus maintenu.
+- **Série en cours** : séances prévues faites d'affilée (une séance prévue aujourd'hui pas encore
+  faite ne la casse pas).
+- **Mesures** : poids, tours (taille, poitrine, hanches, bras, cuisse), masse grasse, notes et photo.
+  Les photos vont dans le bucket privé `progress-photos/<user_id>/…` et s'affichent par URL signée.
+  Le dernier poids mesuré met à jour le profil (déclencheur), utilisé par le coach.
 
 ### Tester les Edge Functions en local
 

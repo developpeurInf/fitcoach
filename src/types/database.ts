@@ -756,7 +756,40 @@ export type Database = {
       };
     };
     Views: {
-      [_ in never]: never;
+      daily_training: {
+        Row: {
+          day: string;
+          minutes: number | null;
+          reps: number | null;
+          sessions: number | null;
+          sets: number | null;
+          user_id: string;
+          volume_kg: number | null;
+        };
+        ComputedFields: never;
+        Relationships: [];
+      };
+      exercise_daily_best: {
+        Row: {
+          best_1rm_kg: number | null;
+          best_load_kg: number | null;
+          best_reps: number | null;
+          day: string;
+          exercise_id: string;
+          sets: number | null;
+          user_id: string;
+        };
+        ComputedFields: never;
+        Relationships: [
+          {
+            foreignKeyName: 'set_logs_exercise_id_fkey';
+            columns: ['exercise_id'];
+            isOneToOne: false;
+            referencedRelation: 'exercises';
+            referencedColumns: ['id'];
+          },
+        ];
+      };
     };
     Functions: {
       consume_ai_quota: { Args: { p_function: string }; Returns: boolean };

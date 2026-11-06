@@ -61,8 +61,103 @@
   },
   "progress": {
     "title": "Progress",
-    "emptyTitle": "No data yet",
-    "emptyBody": "Your charts and records will appear after your first session."
+    "emptyTitle": "Your progress is coming",
+    "emptyBody": "Finish your first workout to see your charts.",
+    "periods": {
+      "day": "Day",
+      "week": "Week",
+      "month": "Month",
+      "quarter": "Quarter",
+      "year": "Year"
+    },
+    "periodHint": {
+      "day": "Last 14 days",
+      "week": "Last 12 weeks",
+      "month": "Last 12 months",
+      "quarter": "Last 8 quarters",
+      "year": "Last 5 years"
+    },
+    "current": {
+      "day": "Today",
+      "week": "This week",
+      "month": "This month",
+      "quarter": "This quarter",
+      "year": "This year"
+    },
+    "kpi": {
+      "sessions": "Workouts",
+      "volume": "Volume",
+      "adherence": "Adherence",
+      "streak": "Current streak",
+      "streakValue_one": "{{count}} workout",
+      "streakValue_other": "{{count}} workouts",
+      "streakHint": "planned workouts done in a row",
+      "vsPrevious": "{{value}}% vs previous period"
+    },
+    "charts": {
+      "volume": "Volume",
+      "volumeBy": "Volume per {{period}}",
+      "adherence": "Adherence",
+      "adherenceBy": "Workouts done / planned per {{period}}",
+      "adherenceDetail": "{{done}} / {{planned}} workouts",
+      "weight": "Body weight",
+      "measurements": "Measurements",
+      "oneRm": "Estimated 1RM",
+      "oneRmHint": "Epley formula: load × (1 + reps / 30), best set of the period.",
+      "noData": "No data for this period yet.",
+      "noExercise": "Do a workout with weights to track your estimated 1RM."
+    },
+    "periodNames": {
+      "day": "day",
+      "week": "week",
+      "month": "month",
+      "quarter": "quarter",
+      "year": "year"
+    },
+    "metrics": {
+      "waist_cm": "Waist",
+      "chest_cm": "Chest",
+      "hips_cm": "Hips",
+      "arm_cm": "Arm",
+      "thigh_cm": "Thigh",
+      "body_fat_pct": "Body fat"
+    },
+    "records": {
+      "title": "Personal records",
+      "seeAll": "See all records",
+      "empty": "Your records will show up here after your first workouts.",
+      "new": "New"
+    },
+    "measure": {
+      "title": "New measurement",
+      "add": "Add a measurement",
+      "history": "Measurements & photos",
+      "date": "Date",
+      "weight": "Weight",
+      "waist": "Waist",
+      "chest": "Chest",
+      "hips": "Hips",
+      "arm": "Arm",
+      "thigh": "Thigh",
+      "bodyFat": "Body fat",
+      "notes": "Notes",
+      "photo": "Progress photo",
+      "addPhoto": "Add a photo",
+      "takePhoto": "Take a photo",
+      "removePhoto": "Remove photo",
+      "save": "Save",
+      "saved": "Measurement saved",
+      "error": "Saving failed. Try again.",
+      "empty": "Enter at least one measurement or a photo.",
+      "invalid": "Value out of range",
+      "invalidDate": "Date as YYYY-MM-DD, not in the future",
+      "emptyHistory": "No measurement yet.",
+      "delete": "Delete",
+      "deleteConfirm": "Delete this measurement and its photo?",
+      "photos": "Photos",
+      "privacy": "Your photos are private: only you can see them.",
+      "permission": "Allow photo access in settings to add one."
+    }
   },
   "coach": {
     "title": "Coach",

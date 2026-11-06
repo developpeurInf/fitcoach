@@ -8,3 +8,4 @@ export { Screen } from './Screen';
 export { Text } from './Text';
 export { TextField } from './TextField';
 export { Sheet } from './Sheet';
+export { Segmented } from './Segmented';
