@@ -62,7 +62,11 @@
     "test": "jest",
     "sync:coach": "node scripts/sync-coach-context.mjs",
     "supabase:start": "supabase start",
-    "supabase:functions": "supabase functions serve --env-file supabase/functions/.env"
+    "supabase:functions": "supabase functions serve --env-file supabase/functions/.env",
+    "db:reset": "supabase db reset",
+    "db:test": "supabase test db",
+    "db:types": "supabase gen types typescript --local > src/types/database.ts && prettier --write src/types/database.ts",
+    "seed:exercises": "node scripts/seed-exercises.mjs"
   },
   "private": true,
   "jest": {
