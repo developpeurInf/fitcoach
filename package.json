@@ -75,6 +75,10 @@
     "testPathIgnorePatterns": [
       "/node_modules/",
       "/supabase/"
-    ]
+    ],
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/src/$1",
+      "^@coach/(.*)$": "<rootDir>/supabase/functions/_shared/coach/$1"
+    }
   }
 }

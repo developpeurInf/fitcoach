@@ -47,10 +47,7 @@ export function ChipGroup<T extends string | number>({
                 : 'border-ink-100 bg-white dark:border-ink-800 dark:bg-ink-900'
             }`}
           >
-            <Text
-              variant="body"
-              className="font-semibold"
-            >
+            <Text variant="body" className="font-semibold">
               {o.label}
             </Text>
             {o.description ? <Text variant="caption">{o.description}</Text> : null}

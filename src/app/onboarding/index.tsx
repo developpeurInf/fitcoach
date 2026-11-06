@@ -12,6 +12,7 @@ import {
 } from '@/features/onboarding/schema';
 import { STEP_COMPONENTS } from '@/features/onboarding/Steps';
 import { useOnboardingDraft } from '@/features/onboarding/store';
+import { useProgramGeneration } from '@/features/program/store';
 import { useUpdateProfile } from '@/features/profile/api';
 import { useSettings } from '@/stores/settings';
 
@@ -25,6 +26,7 @@ export default function OnboardingScreen() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const updateProfile = useUpdateProfile();
   const setUnit = useSettings((s) => s.setUnit);
+  const setAutoStart = useProgramGeneration((s) => s.setAutoStart);
 
   const stepId = STEP_ORDER[step] ?? 'consent';
   const StepView = STEP_COMPONENTS[stepId];
@@ -46,6 +48,7 @@ export default function OnboardingScreen() {
     updateProfile.mutate(toProfileUpdate(answers.data), {
       onSuccess: () => {
         setUnit(answers.data.weightUnit);
+        setAutoStart(true); // Today starts generating the first program right away
         reset();
       },
     });

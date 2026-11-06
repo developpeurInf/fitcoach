@@ -10,12 +10,49 @@
     "title": "Aujourd’hui",
     "emptyTitle": "Pas encore de programme",
     "emptyBody": "Ton coach va bientôt te préparer un programme sur mesure.",
-    "hello": "Salut {{name}} 👋"
+    "hello": "Salut {{name}} 👋",
+    "todaySession": "Séance du jour"
   },
   "program": {
     "title": "Programme",
-    "emptyTitle": "Ton calendrier est vide",
-    "emptyBody": "Tes séances apparaîtront ici, semaine par semaine."
+    "emptyTitle": "Pas encore de programme",
+    "emptyBody": "Ton coach va te préparer un programme sur mesure.",
+    "week": "Semaine {{n}}",
+    "weekShort": "S{{n}}",
+    "weekView": "Semaine",
+    "monthView": "Mois",
+    "rest": "Repos",
+    "today": "Aujourd’hui",
+    "weekTypes": {
+      "adaptation": "Adaptation",
+      "progression": "Progression",
+      "deload": "Décharge",
+      "test": "Test"
+    },
+    "weeksCount": "{{count}} semaines",
+    "sessionsPerWeek": "{{count}} séances / semaine",
+    "generate": {
+      "cta": "Générer mon programme",
+      "title": "Ton programme sur mesure",
+      "body": "Ton coach IA crée un programme de 4 à 8 semaines adapté à ton profil, avec progression et semaine de décharge.",
+      "steps": [
+        "Analyse de ton profil…",
+        "Choix des exercices adaptés à ton matériel…",
+        "Réglage des séries, répétitions et charges…",
+        "Planification des semaines et de la décharge…",
+        "Dernières vérifications…"
+      ],
+      "wait": "Ça prend environ une minute. Tu peux rester sur cet écran.",
+      "errors": {
+        "rate_limited": "Tu as atteint la limite de générations pour le moment. Réessaie dans une heure.",
+        "ai_invalid_output": "Le coach n’a pas réussi à produire un programme valide. Réessaie : une nouvelle tentative suffit en général.",
+        "network": "Pas de connexion. Vérifie ton réseau et réessaie.",
+        "default": "La génération a échoué. Réessaie dans un instant."
+      },
+      "retry": "Réessayer",
+      "regenerate": "Régénérer le programme"
+    },
+    "warningsTitle": "Conseils de ton coach"
   },
   "exercises": {
     "title": "Exercices",
@@ -229,5 +266,25 @@
   },
   "settings": {
     "title": "Paramètres"
+  },
+  "workout": {
+    "start": "Commencer",
+    "view": "Voir la séance",
+    "minutes": "{{count}} min",
+    "exercises": "{{count}} exercices",
+    "warmup": "Échauffement",
+    "cooldown": "Retour au calme",
+    "sets": "{{sets}} × {{reps}}",
+    "hold": "{{sets}} × {{seconds}} s",
+    "rest": "Repos {{seconds}} s",
+    "tempo": "Tempo {{tempo}}",
+    "rpe": "RPE {{rpe}}",
+    "bodyweight": "Poids du corps",
+    "next": "Prochaine séance",
+    "restDay": "Jour de repos",
+    "restDayBody": "Récupère bien : c’est pendant le repos que tu progresses.",
+    "comingSoon": "La séance guidée (saisie des séries, minuteur) arrive à la prochaine étape.",
+    "notFound": "Séance introuvable.",
+    "programDone": "Programme terminé ! Ton coach peut t’en préparer un nouveau."
   }
 }
