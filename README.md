@@ -3,7 +3,7 @@
 Application de coaching fitness (iOS, Android, web) avec un coach IA (Claude).
 Un seul code Expo / React Native ; backend Supabase ; appels IA uniquement côté serveur.
 
-> Statut : **phase 3** (authentification et onboarding). La génération de programme et les écrans de séance arrivent dans les phases suivantes.
+> Statut : **phase 4** (génération du programme). La séance guidée, le suivi et le chat arrivent dans les phases suivantes.
 
 ## Stack
 
@@ -129,6 +129,29 @@ pointent vers le dépôt source, les vidéos passent par `video_search_query` ou
 3. Supabase → Authentication → Providers → Google : colle l'ID client et le secret (local : variables
    `SUPABASE_AUTH_EXTERNAL_GOOGLE_CLIENT_ID` / `_SECRET` du `.env`).
 4. Supabase → Authentication → URL Configuration : ajoute l'URL du site web et `fitcoach://**` aux redirections.
+
+## Génération du programme (IA)
+
+1. Fin de l'onboarding → l'écran Aujourd'hui appelle l'Edge Function `generate-program`.
+2. La fonction vérifie la session et le quota (`consume_ai_quota`), charge le profil et l'envoie au
+   coach (prompt système = `coach-fitness-contexte.md`, mis en cache).
+3. Claude répond en **sortie structurée** (schéma JSON imposé par l'API) : semaines de périodisation
+   (adaptation, progression, décharge, test) et une séance type par jour d'entraînement.
+4. Le JSON est revalidé avec Zod (`supabase/functions/_shared/coach/program-schema.ts`, partagé avec l'app)
+   et contrôlé : `exercise_id` existants dans la bibliothèque, nombre de séances, semaine de décharge…
+   En cas d'échec, **un seul réessai** en renvoyant les erreurs au modèle, puis une erreur claire.
+5. `program-builder.ts` déplie les semaines × séances types en séances datées (charges × intensité,
+   séries × volume, arrondi à 1,25 kg), enregistrées en une transaction par `create_program()`.
+
+Le modèle vient de `CLAUDE_MODEL` (défaut `claude-sonnet-5-5`). Pour les modèles qui le permettent,
+le _fallback_ serveur est activé : si un filtre de sécurité refuse à tort une demande, l'API la
+relance sur un autre modèle au lieu d'échouer.
+
+### Tester les Edge Functions en local
+
+```bash
+npx supabase functions serve --env-file supabase/functions/.env
+```
 
 ## Prompt du coach
 

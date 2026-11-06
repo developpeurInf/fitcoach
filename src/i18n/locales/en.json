@@ -10,12 +10,49 @@
     "title": "Today",
     "emptyTitle": "No program yet",
     "emptyBody": "Your coach will soon build a program for you.",
-    "hello": "Hi {{name}} 👋"
+    "hello": "Hi {{name}} 👋",
+    "todaySession": "Today’s session"
   },
   "program": {
     "title": "Program",
-    "emptyTitle": "Your calendar is empty",
-    "emptyBody": "Your sessions will show up here, week by week."
+    "emptyTitle": "No program yet",
+    "emptyBody": "Your coach will build a program for you.",
+    "week": "Week {{n}}",
+    "weekShort": "W{{n}}",
+    "weekView": "Week",
+    "monthView": "Month",
+    "rest": "Rest",
+    "today": "Today",
+    "weekTypes": {
+      "adaptation": "Adaptation",
+      "progression": "Progression",
+      "deload": "Deload",
+      "test": "Test"
+    },
+    "weeksCount": "{{count}} weeks",
+    "sessionsPerWeek": "{{count}} sessions / week",
+    "generate": {
+      "cta": "Generate my program",
+      "title": "Your tailored program",
+      "body": "Your AI coach builds a 4 to 8 week program for your profile, with progression and a deload week.",
+      "steps": [
+        "Analysing your profile…",
+        "Picking exercises for your equipment…",
+        "Setting sets, reps and loads…",
+        "Planning weeks and deload…",
+        "Final checks…"
+      ],
+      "wait": "This takes about a minute. You can stay on this screen.",
+      "errors": {
+        "rate_limited": "You’ve reached the generation limit for now. Try again in an hour.",
+        "ai_invalid_output": "The coach couldn’t produce a valid program. Try again: a second attempt usually works.",
+        "network": "No connection. Check your network and try again.",
+        "default": "Generation failed. Try again in a moment."
+      },
+      "retry": "Try again",
+      "regenerate": "Regenerate program"
+    },
+    "warningsTitle": "Tips from your coach"
   },
   "exercises": {
     "title": "Exercises",
@@ -229,5 +266,25 @@
   },
   "settings": {
     "title": "Settings"
+  },
+  "workout": {
+    "start": "Start",
+    "view": "View session",
+    "minutes": "{{count}} min",
+    "exercises": "{{count}} exercises",
+    "warmup": "Warm-up",
+    "cooldown": "Cool-down",
+    "sets": "{{sets}} × {{reps}}",
+    "hold": "{{sets}} × {{seconds}} s",
+    "rest": "Rest {{seconds}} s",
+    "tempo": "Tempo {{tempo}}",
+    "rpe": "RPE {{rpe}}",
+    "bodyweight": "Bodyweight",
+    "next": "Next session",
+    "restDay": "Rest day",
+    "restDayBody": "Recover well: rest is when you progress.",
+    "comingSoon": "Guided sessions (set logging, timer) come in the next step.",
+    "notFound": "Session not found.",
+    "programDone": "Program complete! Your coach can build a new one."
   }
 }
