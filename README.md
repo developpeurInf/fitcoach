@@ -3,7 +3,7 @@
 Application de coaching fitness (iOS, Android, web) avec un coach IA (Claude).
 Un seul code Expo / React Native ; backend Supabase ; appels IA uniquement côté serveur.
 
-> Statut : **phase 2** (base de données). Auth, IA et écrans réels arrivent dans les phases suivantes.
+> Statut : **phase 3** (authentification et onboarding). La génération de programme et les écrans de séance arrivent dans les phases suivantes.
 
 ## Stack
 
@@ -112,6 +112,23 @@ sont mappés sur ces entrées et ont un nom français. `burpee` et `shoulder-dis
 dans la source : ils sont créés sans image et l'app utilisera la recherche YouTube. Les autres exercices
 gardent leur nom anglais tant qu'ils ne sont pas traduits. Aucune URL n'est inventée : les images
 pointent vers le dépôt source, les vidéos passent par `video_search_query` ou `youtube_video_id`.
+
+## Authentification et onboarding
+
+- Email + mot de passe, mot de passe oublié, et Google (OAuth PKCE : redirection sur le web, navigateur intégré sur mobile).
+- Navigation protégée (`src/app/_layout.tsx`) : déconnecté → `(auth)`, connecté sans profil → `onboarding`, sinon → onglets.
+- Onboarding en 8 étapes, validé par Zod (`src/features/onboarding/schema.ts`). L'avertissement santé et le
+  consentement RGPD sont obligatoires et horodatés dans `profiles`. Mineurs et situations à risque
+  (grossesse, cardiaque, hypertension, diabète, opération récente) affichent une recommandation d'avis médical.
+- Le brouillon d'onboarding est sauvegardé sur l'appareil : fermer l'app ne fait pas perdre les réponses.
+
+### Configurer Google
+
+1. Google Cloud Console → Identifiants → ID client OAuth (type « Application Web »).
+2. URI de redirection autorisée : `https://<projet>.supabase.co/auth/v1/callback` (local : `http://127.0.0.1:54321/auth/v1/callback`).
+3. Supabase → Authentication → Providers → Google : colle l'ID client et le secret (local : variables
+   `SUPABASE_AUTH_EXTERNAL_GOOGLE_CLIENT_ID` / `_SECRET` du `.env`).
+4. Supabase → Authentication → URL Configuration : ajoute l'URL du site web et `fitcoach://**` aux redirections.
 
 ## Prompt du coach
 

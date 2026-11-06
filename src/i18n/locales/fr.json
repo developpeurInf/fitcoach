@@ -9,7 +9,8 @@
   "today": {
     "title": "Aujourd’hui",
     "emptyTitle": "Pas encore de programme",
-    "emptyBody": "Termine ton profil et ton coach te prépare un programme sur mesure."
+    "emptyBody": "Ton coach va bientôt te préparer un programme sur mesure.",
+    "hello": "Salut {{name}} 👋"
   },
   "program": {
     "title": "Programme",
@@ -34,6 +35,199 @@
   "common": {
     "retry": "Réessayer",
     "loading": "Chargement…",
-    "error": "Une erreur est survenue."
+    "error": "Une erreur est survenue.",
+    "close": "Fermer"
+  },
+  "auth": {
+    "tagline": "Ton coach IA, chaque jour, à chaque série.",
+    "email": "Email",
+    "password": "Mot de passe",
+    "passwordConfirm": "Confirme le mot de passe",
+    "signIn": "Se connecter",
+    "signUp": "Créer mon compte",
+    "google": "Continuer avec Google",
+    "or": "ou",
+    "noAccount": "Pas encore de compte ? Inscris-toi",
+    "hasAccount": "Déjà un compte ? Connecte-toi",
+    "forgot": "Mot de passe oublié ?",
+    "resetTitle": "Mot de passe oublié",
+    "resetBody": "Indique ton email : on t’envoie un lien pour choisir un nouveau mot de passe.",
+    "resetSend": "Envoyer le lien",
+    "resetSent": "Si un compte existe pour cet email, un lien vient d’être envoyé.",
+    "back": "Retour à la connexion",
+    "signUpTitle": "Crée ton compte",
+    "signInTitle": "Content de te revoir",
+    "checkEmail": "Compte créé ! Confirme ton adresse via l’email qu’on vient de t’envoyer, puis connecte-toi.",
+    "signOut": "Se déconnecter",
+    "errors": {
+      "invalidEmail": "Adresse email invalide.",
+      "passwordTooShort": "8 caractères minimum.",
+      "passwordMismatch": "Les mots de passe ne correspondent pas.",
+      "invalidCredentials": "Email ou mot de passe incorrect.",
+      "emailNotConfirmed": "Confirme d’abord ton adresse email.",
+      "userExists": "Un compte existe déjà avec cet email.",
+      "weakPassword": "Mot de passe trop faible : mélange lettres, chiffres et symboles.",
+      "rateLimited": "Trop de tentatives. Réessaie dans quelques minutes.",
+      "generic": "Impossible de se connecter pour le moment. Réessaie."
+    }
+  },
+  "onboarding": {
+    "progress": "Étape {{current}} sur {{total}}",
+    "next": "Continuer",
+    "back": "Retour",
+    "finish": "Enregistrer mon profil",
+    "saving": "Enregistrement…",
+    "saveError": "Ton profil n’a pas pu être enregistré. Vérifie ta connexion et réessaie.",
+    "steps": {
+      "consent": {
+        "title": "Avant de commencer",
+        "body": "FitCoach t’accompagne avec un coach IA. Quelques points importants :"
+      },
+      "about": {
+        "title": "Faisons connaissance",
+        "body": "Ton coach adapte tout à ton profil."
+      },
+      "body": {
+        "title": "Tes mensurations",
+        "body": "Elles servent à calculer tes charges et suivre ta progression."
+      },
+      "level": {
+        "title": "Ton niveau",
+        "body": "Sois honnête : on progresse plus vite en partant du bon niveau."
+      },
+      "goals": {
+        "title": "Ton objectif",
+        "body": "Un objectif principal, et jusqu’à 3 secondaires."
+      },
+      "schedule": {
+        "title": "Ton emploi du temps",
+        "body": "Combien de séances peux-tu vraiment tenir ?"
+      },
+      "equipment": {
+        "title": "Ton matériel",
+        "body": "Coche tout ce que tu as à disposition."
+      },
+      "health": {
+        "title": "Blessures et santé",
+        "body": "Pour éviter les mouvements à risque. Ces infos restent privées."
+      }
+    },
+    "consent": {
+      "disclaimerTitle": "Ce n’est pas un avis médical",
+      "disclaimer": "Les programmes et conseils de FitCoach sont générés par une IA et ne remplacent pas l’avis d’un médecin ou d’un professionnel de santé. Consulte un médecin avant de commencer si tu as un doute sur ton état de santé. Arrête immédiatement en cas de douleur vive, de vertiges ou de douleur thoracique.",
+      "healthCheckbox": "J’ai compris que FitCoach ne fournit pas d’avis médical et je m’entraîne sous ma responsabilité.",
+      "gdprTitle": "Tes données",
+      "gdpr": "Tes données (profil, séances, mesures, photos) sont stockées de façon sécurisée et ne servent qu’à ton coaching. Un résumé est envoyé à notre fournisseur d’IA (Anthropic) pour générer tes programmes. Tu peux exporter ou supprimer toutes tes données à tout moment dans les paramètres.",
+      "gdprCheckbox": "J’accepte le traitement de mes données, y compris de santé, pour mon coaching."
+    },
+    "fields": {
+      "firstName": "Prénom",
+      "age": "Âge",
+      "sex": "Sexe",
+      "height": "Taille",
+      "weight": "Poids",
+      "unit": "Unité",
+      "daysPerWeek": "Jours par semaine",
+      "sessionMinutes": "Durée d’une séance",
+      "location": "Lieu",
+      "secondaryGoals": "Objectifs secondaires (optionnel)",
+      "injuries": "Zones sensibles ou blessures",
+      "conditions": "Situations de santé particulières",
+      "experience": "Ton historique sportif (optionnel)",
+      "experiencePlaceholder": "Ex. : 2 ans de salle, arrêt depuis 6 mois",
+      "minutes": "{{count}} min"
+    },
+    "warnings": {
+      "minor": "Tu as moins de 18 ans : demande l’accord d’un parent et l’avis d’un médecin avant de commencer.",
+      "medical": "Avec ces situations, demande l’avis de ton médecin avant de commencer. Ton coach restera prudent.",
+      "sixDaysBeginner": "6 jours par semaine, c’est beaucoup pour débuter : 3 à 4 séances suffisent pour progresser."
+    },
+    "options": {
+      "sex": {
+        "male": "Homme",
+        "female": "Femme",
+        "other": "Autre / je préfère ne pas dire"
+      },
+      "level": {
+        "beginner": "Débutant",
+        "intermediate": "Intermédiaire",
+        "advanced": "Avancé"
+      },
+      "levelDesc": {
+        "beginner": "Moins de 6 mois d’entraînement régulier",
+        "intermediate": "6 mois à 2 ans, je connais les mouvements de base",
+        "advanced": "Plus de 2 ans, je suis mes charges et ma progression"
+      },
+      "goal": {
+        "fat_loss": "Perdre du gras",
+        "muscle_gain": "Prendre du muscle",
+        "strength": "Gagner en force",
+        "endurance": "Améliorer mon endurance",
+        "general_fitness": "Me remettre en forme",
+        "mobility": "Gagner en souplesse",
+        "sport_performance": "Performance sportive"
+      },
+      "secondary": {
+        "abs": "Abdos",
+        "back": "Dos",
+        "posture": "Posture",
+        "cardio": "Cardio",
+        "glutes": "Fessiers",
+        "arms": "Bras"
+      },
+      "location": {
+        "gym": "Salle de sport",
+        "home": "Maison",
+        "outdoor": "Extérieur"
+      },
+      "equipment": {
+        "none": "Aucun (poids du corps)",
+        "dumbbells": "Haltères",
+        "barbell": "Barre et disques",
+        "bench": "Banc",
+        "rack": "Rack à squat",
+        "machines": "Machines guidées",
+        "cables": "Poulies",
+        "kettlebell": "Kettlebell",
+        "bands": "Élastiques",
+        "pullup_bar": "Barre de traction",
+        "cardio_machines": "Cardio (tapis, vélo, rameur)"
+      },
+      "injury": {
+        "shoulder": "Épaule",
+        "knee": "Genou",
+        "lower_back": "Bas du dos",
+        "wrist": "Poignet",
+        "elbow": "Coude",
+        "hip": "Hanche",
+        "ankle": "Cheville",
+        "neck": "Nuque"
+      },
+      "condition": {
+        "pregnancy": "Grossesse",
+        "heart_condition": "Problème cardiaque",
+        "hypertension": "Hypertension",
+        "diabetes": "Diabète",
+        "recent_surgery": "Opération récente"
+      }
+    },
+    "errors": {
+      "required": "Fais un choix pour continuer.",
+      "firstName": "Indique ton prénom.",
+      "age": "Âge invalide.",
+      "ageMin": "FitCoach est réservé aux 13 ans et plus.",
+      "height": "Taille entre 120 et 230 cm.",
+      "weight": "Poids invalide.",
+      "equipment": "Choisis au moins une option.",
+      "healthDisclaimer": "Tu dois accepter pour continuer.",
+      "gdprConsent": "Ton consentement est nécessaire pour utiliser le coaching."
+    },
+    "done": {
+      "title": "Profil enregistré, {{name}} !",
+      "body": "Prochaine étape : ton coach va générer ton programme personnalisé."
+    }
+  },
+  "settings": {
+    "title": "Paramètres"
   }
 }
