@@ -43,7 +43,8 @@
           "imageWidth": 180
         }
       ],
-      "expo-web-browser"
+      "expo-web-browser",
+      "expo-audio"
     ],
     "scheme": "fitcoach",
     "backgroundColor": "#0B0D0E",

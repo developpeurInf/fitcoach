@@ -16,3 +16,8 @@ export function displayWeight(kg: number, unit: WeightUnit): number {
 export function toKg(value: number, unit: WeightUnit): number {
   return unit === 'kg' ? value : lbToKg(value);
 }
+
+/** "62,5 kg" in French, "62.5 kg" in English (display rounding of displayWeight). */
+export function formatWeight(kg: number, unit: WeightUnit, locale = 'fr'): string {
+  return `${displayWeight(kg, unit).toLocaleString(locale, { maximumFractionDigits: 1 })} ${unit}`;
+}

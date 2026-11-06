@@ -8,6 +8,7 @@ import { localDate, useActiveProgram, useProgramWorkouts } from '@/features/prog
 import { GenerateProgram } from '@/features/program/GenerateProgram';
 import { WorkoutCard } from '@/features/program/WorkoutCard';
 import { useProfile } from '@/features/profile/api';
+import { ActiveSessionBanner } from '@/features/session/ActiveSessionBanner';
 import { colors } from '@/theme/tokens';
 
 export default function TodayScreen() {
@@ -57,6 +58,7 @@ export default function TodayScreen() {
         <GenerateProgram />
       ) : (
         <View className="gap-5">
+          <ActiveSessionBanner />
           {warnings.length ? (
             <Notice tone="warning" title={t('program.warningsTitle')}>
               {warnings.join('\n')}

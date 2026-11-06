@@ -7,3 +7,4 @@ export { ProgressBar } from './ProgressBar';
 export { Screen } from './Screen';
 export { Text } from './Text';
 export { TextField } from './TextField';
+export { Sheet } from './Sheet';
