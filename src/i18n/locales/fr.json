@@ -1,0 +1,39 @@
+{
+  "tabs": {
+    "today": "Aujourd’hui",
+    "program": "Programme",
+    "exercises": "Exercices",
+    "progress": "Progrès",
+    "coach": "Coach"
+  },
+  "today": {
+    "title": "Aujourd’hui",
+    "emptyTitle": "Pas encore de programme",
+    "emptyBody": "Termine ton profil et ton coach te prépare un programme sur mesure."
+  },
+  "program": {
+    "title": "Programme",
+    "emptyTitle": "Ton calendrier est vide",
+    "emptyBody": "Tes séances apparaîtront ici, semaine par semaine."
+  },
+  "exercises": {
+    "title": "Exercices",
+    "emptyTitle": "Bibliothèque bientôt disponible",
+    "emptyBody": "Recherche par muscle, matériel ou niveau."
+  },
+  "progress": {
+    "title": "Progrès",
+    "emptyTitle": "Aucune donnée pour l’instant",
+    "emptyBody": "Tes graphiques et records s’afficheront après ta première séance."
+  },
+  "coach": {
+    "title": "Coach",
+    "emptyTitle": "Ton coach t’attend",
+    "emptyBody": "Pose une question sur ton programme, ta technique ou ta récupération."
+  },
+  "common": {
+    "retry": "Réessayer",
+    "loading": "Chargement…",
+    "error": "Une erreur est survenue."
+  }
+}

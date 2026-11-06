@@ -1,22 +1,75 @@
 {
   "name": "fitcoach",
   "version": "1.0.0",
-  "main": "index.ts",
+  "main": "expo-router/entry",
   "dependencies": {
+    "@expo/metro-runtime": "~58.0.17",
+    "@expo/vector-icons": "^15.0.2",
+    "@react-native-async-storage/async-storage": "2.2.0",
+    "@supabase/supabase-js": "^2.119.0",
+    "@tanstack/react-query": "^5.107.0",
+    "eslint-config-expo": "~58.0.4",
     "expo": "~58.0.23",
+    "expo-constants": "~58.0.15",
+    "expo-dev-client": "~58.0.18",
+    "expo-haptics": "~58.0.7",
+    "expo-linking": "~58.0.16",
+    "expo-localization": "~58.0.5",
+    "expo-notifications": "~58.1.8",
+    "expo-router": "~58.0.30",
+    "expo-secure-store": "~58.0.2",
+    "expo-splash-screen": "~58.0.13",
     "expo-status-bar": "~58.0.4",
+    "expo-system-ui": "~58.0.7",
+    "i18next": "^26.7.2",
+    "nativewind": "^4.2.7",
     "react": "19.3.0",
-    "react-native": "0.88.1"
+    "react-dom": "19.3.0",
+    "react-i18next": "^17.1.13",
+    "react-native": "0.88.1",
+    "react-native-gesture-handler": "~3.3.0",
+    "react-native-reanimated": "4.7.1",
+    "react-native-safe-area-context": "~5.11.1",
+    "react-native-screens": "~4.30.1",
+    "react-native-svg": "15.16.0",
+    "react-native-url-polyfill": "^4.0.0",
+    "react-native-web": "~0.21.4",
+    "react-native-worklets": "0.13.0",
+    "tailwindcss": "^3.4.19",
+    "zod": "^4.6.7",
+    "zustand": "^5.1.0"
   },
   "devDependencies": {
+    "@testing-library/react-native": "^14.1.0",
+    "@types/jest": "^30.0.0",
     "@types/react": "~19.3.0",
+    "babel-preset-expo": "^58.0.24",
+    "eslint": "^9.39.5",
+    "jest": "^30.5.2",
+    "jest-expo": "^58.0.14",
+    "prettier": "^3.9.10",
+    "prettier-plugin-tailwindcss": "^0.8.1",
+    "supabase": "^3.0.0",
     "typescript": "~6.0.3"
   },
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "lint": "expo lint",
+    "typecheck": "tsc --noEmit",
+    "test": "jest",
+    "sync:coach": "node scripts/sync-coach-context.mjs",
+    "supabase:start": "supabase start",
+    "supabase:functions": "supabase functions serve --env-file supabase/functions/.env"
   },
-  "private": true
+  "private": true,
+  "jest": {
+    "preset": "jest-expo",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/supabase/"
+    ]
+  }
 }

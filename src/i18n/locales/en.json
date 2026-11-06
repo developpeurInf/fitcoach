@@ -1,0 +1,39 @@
+{
+  "tabs": {
+    "today": "Today",
+    "program": "Program",
+    "exercises": "Exercises",
+    "progress": "Progress",
+    "coach": "Coach"
+  },
+  "today": {
+    "title": "Today",
+    "emptyTitle": "No program yet",
+    "emptyBody": "Finish your profile and your coach will build a program for you."
+  },
+  "program": {
+    "title": "Program",
+    "emptyTitle": "Your calendar is empty",
+    "emptyBody": "Your sessions will show up here, week by week."
+  },
+  "exercises": {
+    "title": "Exercises",
+    "emptyTitle": "Library coming soon",
+    "emptyBody": "Search by muscle, equipment or level."
+  },
+  "progress": {
+    "title": "Progress",
+    "emptyTitle": "No data yet",
+    "emptyBody": "Your charts and records will appear after your first session."
+  },
+  "coach": {
+    "title": "Coach",
+    "emptyTitle": "Your coach is ready",
+    "emptyBody": "Ask about your program, technique or recovery."
+  },
+  "common": {
+    "retry": "Retry",
+    "loading": "Loading…",
+    "error": "Something went wrong."
+  }
+}
