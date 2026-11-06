@@ -1,4 +1,9 @@
 export { Button } from './Button';
+export { Checkbox } from './Checkbox';
+export { ChipGroup, toggle } from './ChipGroup';
 export { EmptyState } from './EmptyState';
+export { Notice } from './Notice';
+export { ProgressBar } from './ProgressBar';
 export { Screen } from './Screen';
 export { Text } from './Text';
+export { TextField } from './TextField';

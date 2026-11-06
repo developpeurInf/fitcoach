@@ -42,7 +42,8 @@
           "image": "./assets/splash-icon.png",
           "imageWidth": 180
         }
-      ]
+      ],
+      "expo-web-browser"
     ],
     "scheme": "fitcoach",
     "backgroundColor": "#0B0D0E",

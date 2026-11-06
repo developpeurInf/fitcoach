@@ -2,7 +2,7 @@ import { Text as RNText, type TextProps } from 'react-native';
 
 import { useSettings } from '@/stores/settings';
 
-const SIZES = { title: 32, heading: 22, body: 16, caption: 13 } as const;
+const SIZES = { title: 32, heading: 22, body: 16, caption: 13, error: 13 } as const;
 type Variant = keyof typeof SIZES;
 
 const VARIANT_CLASS: Record<Variant, string> = {
@@ -10,6 +10,8 @@ const VARIANT_CLASS: Record<Variant, string> = {
   heading: 'font-bold text-ink-950 dark:text-ink-50',
   body: 'text-ink-900 dark:text-ink-100',
   caption: 'text-ink-500 dark:text-ink-300',
+  // Separate variant: NativeWind doesn't merge conflicting classes, so overriding caption's color is unreliable.
+  error: 'font-medium text-danger',
 };
 
 type Props = TextProps & { variant?: Variant; className?: string };

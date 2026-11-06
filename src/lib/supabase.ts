@@ -14,6 +14,8 @@ export const supabase = createClient<Database>(
       storage: authStorage,
       autoRefreshToken: true,
       persistSession: true,
+      // PKCE: OAuth returns a one-time code exchanged for the session (works on web and native).
+      flowType: 'pkce',
       // OAuth redirects (Google) land on the web URL; native handles them via deep links.
       detectSessionInUrl: Platform.OS === 'web',
     },

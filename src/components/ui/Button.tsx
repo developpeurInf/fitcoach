@@ -1,6 +1,8 @@
 import * as Haptics from 'expo-haptics';
 import { ActivityIndicator, Platform, Pressable, type PressableProps } from 'react-native';
 
+import { colors } from '@/theme/tokens';
+
 import { Text } from './Text';
 
 type Props = PressableProps & {
@@ -27,11 +29,13 @@ export function Button({ label, variant = 'primary', loading, disabled, onPress,
       {...rest}
     >
       {loading ? (
-        <ActivityIndicator color={primary ? '#0B0D0E' : undefined} />
+        <ActivityIndicator color={primary ? colors.accent.foreground : undefined} />
       ) : (
         <Text
           variant="body"
-          className={`font-bold ${primary ? 'text-accent-foreground dark:text-accent-foreground' : ''}`}
+          className="font-bold"
+          // Inline color: class overrides conflict with the variant's dark: color in NativeWind.
+          style={primary ? { color: colors.accent.foreground } : undefined}
         >
           {label}
         </Text>
