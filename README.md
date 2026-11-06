@@ -3,7 +3,7 @@
 Application de coaching fitness (iOS, Android, web) avec un coach IA (Claude).
 Un seul code Expo / React Native ; backend Supabase ; appels IA uniquement côté serveur.
 
-> Statut : **phase 4** (génération du programme). La séance guidée, le suivi et le chat arrivent dans les phases suivantes.
+> Statut : **phase 5** (séance en cours). Le suivi des progrès, les bilans IA et le chat arrivent dans les phases suivantes.
 
 ## Stack
 
@@ -87,7 +87,7 @@ Certaines librairies (notifications, secure store) demandent un _development bui
 | `programs` → `workouts` → `workout_exercises` | ce que le coach a planifié (un seul programme actif)                                  |
 | `workout_logs` → `set_logs`                   | ce que l'utilisateur a réellement fait ; tonnage et 1RM (Epley) calculés par Postgres |
 | `body_measurements`                           | poids, mensurations, photo (bucket privé `progress-photos/<user_id>/…`)               |
-| `personal_records`                            | records détectés                                                                      |
+| `personal_records`                            | records détectés à la fin de chaque séance (`detect_personal_records`)                |
 | `coach_reports`                               | bilans IA (séance, semaine, mois, trimestre, année, adaptation)                       |
 | `chat_messages`                               | historique du chat                                                                    |
 | `exercises`                                   | bibliothèque partagée, en lecture seule pour les utilisateurs                         |
@@ -99,7 +99,7 @@ Les quotas IA se règlent dans la table `ai_limits` ; chaque fonction appelle `c
 
 ```bash
 npm run db:reset          # recrée la base locale : migrations + seed
-npm run db:test           # tests pgTAP (isolation RLS, quotas, colonnes calculées)
+npm run db:test           # tests pgTAP (RLS, quotas, colonnes calculées, fin de séance et records)
 npm run db:types          # régénère src/types/database.ts
 npm run seed:exercises    # régénère supabase/seed.sql depuis free-exercise-db
 ```
@@ -146,6 +146,25 @@ pointent vers le dépôt source, les vidéos passent par `video_search_query` ou
 Le modèle vient de `CLAUDE_MODEL` (défaut `claude-sonnet-5-5`). Pour les modèles qui le permettent,
 le _fallback_ serveur est activé : si un filtre de sécurité refuse à tort une demande, l'API la
 relance sur un autre modèle au lieu d'échouer.
+
+## Séance en cours
+
+- **Démarrer** (détail de la séance) : la séance est construite à partir du plan et de la dernière
+  performance sur chaque exercice, puis gardée **sur le téléphone** (store Zustand persistant). La
+  saisie marche hors connexion et survit à la fermeture de l'app ; « Reprendre » apparaît sur Aujourd'hui.
+- **Saisie** : la série suivante est pré-remplie (série juste faite → même série la dernière fois →
+  plan) ; reps, charge (pas de 2,5 kg / 5 lb) et RPE facultatif, validés en un geste.
+- **Repos** : minuteur lancé à chaque série validée, avec la fin stockée en heure absolue (juste même
+  après un passage en arrière-plan) ; vibration, retour haptique et bip à 0. L'écran reste allumé.
+  La notification quand l'app est en arrière-plan arrive avec les notifications (phase 8).
+- **Remplacer** : l'Edge Function `swap-exercise` propose au coach jusqu'à 40 variantes de la
+  bibliothèque (même catégorie, mêmes muscles, matériel de l'utilisateur) ; la réponse est validée
+  (Zod + exercice dans la liste) et remplace l'exercice de cette séance (`replaced_from` garde l'original).
+- **Douleur** : zone, intensité, note, enregistrées avec la séance. À partir de 7/10, l'app applique
+  la règle du coach : arrêter l'exercice, consulter si besoin, et propose de le remplacer.
+- **Fin** : ressenti (1–5), énergie (1–5), commentaire, résumé (durée, séries, reps, tonnage).
+  `finish_workout()` enregistre tout en une transaction, marque la séance faite et renvoie les
+  records battus (charge max, 1RM estimé, reps max au poids du corps), affichés puis marqués célébrés.
 
 ### Tester les Edge Functions en local
 

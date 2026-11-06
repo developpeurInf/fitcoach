@@ -1,5 +1,3 @@
-// AUTO-GENERATED: npm run db:types (requires the local Supabase stack). Do not edit by hand.
-
 export type Json = string | number | boolean | null | { [key: string]: Json | undefined } | Json[];
 
 export type Database = {
@@ -762,10 +760,34 @@ export type Database = {
     };
     Functions: {
       consume_ai_quota: { Args: { p_function: string }; Returns: boolean };
+      create_program: { Args: { p_program: Json; p_workouts: Json }; Returns: string };
+      detect_personal_records: {
+        Args: { p_log_id: string };
+        Returns: {
+          achieved_on: string;
+          celebrated_at: string | null;
+          created_at: string;
+          exercise_id: string;
+          id: string;
+          load_kg: number | null;
+          record_type: Database['public']['Enums']['record_type'];
+          reps: number | null;
+          set_log_id: string | null;
+          user_id: string;
+          value: number;
+        }[];
+        SetofOptions: {
+          from: '*';
+          to: 'personal_records';
+          isOneToOne: false;
+          isSetofReturn: true;
+        };
+      };
       exercise_search_text: {
         Args: { muscles: string[]; name_en: string; name_fr: string };
         Returns: string;
       };
+      finish_workout: { Args: { p_log: Json }; Returns: Json };
     };
     Enums: {
       chat_role: 'user' | 'assistant';

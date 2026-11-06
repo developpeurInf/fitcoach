@@ -59,6 +59,7 @@ function RootNavigator() {
       <Stack.Protected guard={signedIn && onboarded}>
         <Stack.Screen name="(tabs)" />
         <Stack.Screen name="workout" />
+        <Stack.Screen name="session" options={{ gestureEnabled: false }} />
         <Stack.Screen name="settings" options={{ presentation: 'modal' }} />
       </Stack.Protected>
     </Stack>

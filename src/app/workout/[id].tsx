@@ -3,11 +3,12 @@ import { router, useLocalSearchParams } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { ActivityIndicator, Image, Pressable, View } from 'react-native';
 
-import { Button, Notice, Screen, Text } from '@/components/ui';
+import { Notice, Screen, Text } from '@/components/ui';
 import { useWorkout, type WorkoutWithExercises } from '@/features/program/api';
 import { WeekTypeBadge } from '@/features/program/WeekTypeBadge';
+import { StartSessionButton } from '@/features/session/StartSessionButton';
 import { formatDayLong } from '@/lib/dates';
-import { displayWeight } from '@/lib/units';
+import { formatWeight } from '@/lib/units';
 import { useSettings } from '@/stores/settings';
 import { colors } from '@/theme/tokens';
 
@@ -67,12 +68,7 @@ function WorkoutDetail({ workout }: { workout: WorkoutWithExercises }) {
 
       <TimedList title={t('workout.cooldown')} items={workout.cooldown as TimedItem[]} />
 
-      <View className="gap-2">
-        <Button label={t('workout.start')} disabled onPress={() => undefined} />
-        <Text variant="caption" className="text-center">
-          {t('workout.comingSoon')}
-        </Text>
-      </View>
+      <StartSessionButton workout={workout} />
     </View>
   );
 }
@@ -110,7 +106,7 @@ function ExerciseRow({ item }: { item: WorkoutWithExercises['workout_exercises']
     : t('workout.sets', { sets: item.sets, reps: item.reps });
   const load =
     item.suggested_load_kg != null && item.suggested_load_kg > 0
-      ? `${displayWeight(item.suggested_load_kg, unit)} ${unit}`
+      ? formatWeight(item.suggested_load_kg, unit, i18n.language)
       : t('workout.bodyweight');
   const meta = [
     item.rest_sec != null ? t('workout.rest', { seconds: item.rest_sec }) : null,

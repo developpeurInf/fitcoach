@@ -9,7 +9,14 @@ export type WorkoutWithExercises = Workout & {
   workout_exercises: (WorkoutExercise & {
     exercise: Pick<
       Exercise,
-      'id' | 'name_fr' | 'name_en' | 'image_urls' | 'primary_muscles' | 'equipment'
+      | 'id'
+      | 'name_fr'
+      | 'name_en'
+      | 'image_urls'
+      | 'gif_url'
+      | 'youtube_video_id'
+      | 'primary_muscles'
+      | 'equipment'
     > | null;
   })[];
 };
@@ -67,7 +74,7 @@ export function useWorkout(id: string) {
       const { data, error } = await supabase
         .from('workouts')
         .select(
-          '*, workout_exercises(*, exercise:exercises!workout_exercises_exercise_id_fkey(id, name_fr, name_en, image_urls, primary_muscles, equipment))',
+          '*, workout_exercises(*, exercise:exercises!workout_exercises_exercise_id_fkey(id, name_fr, name_en, image_urls, gif_url, youtube_video_id, primary_muscles, equipment))',
         )
         .eq('id', id)
         .order('position', { referencedTable: 'workout_exercises' })
