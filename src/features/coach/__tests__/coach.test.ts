@@ -201,3 +201,39 @@ describe('chat helpers', () => {
     expect(second.rest).toBe('');
   });
 });
+
+describe('exercise sheet', () => {
+  const { checkSheet, exerciseSheetSchema } = jest.requireActual(
+    '@coach/sheet',
+  ) as typeof import('@coach/sheet');
+  const sheet = {
+    nom_fr: 'Développé couché',
+    etapes: ['Allonge-toi', 'Descends la barre', 'Pousse'],
+    erreurs: ['Fesses décollées', 'Coudes trop ouverts'],
+    respiration: 'Inspire en descendant, souffle en poussant.',
+    variante_facile_id: 'push-up',
+    variante_difficile_id: 'push-up',
+  };
+  it('needs 3 to 5 steps', () => {
+    expect(exerciseSheetSchema.safeParse(sheet).success).toBe(true);
+    expect(exerciseSheetSchema.safeParse({ ...sheet, etapes: ['Pousse'] }).success).toBe(false);
+  });
+  it('variants must come from the candidates and differ', () => {
+    const problems = checkSheet(sheet, {
+      exerciseId: 'barbell-bench-press',
+      candidateIds: new Set(['push-up']),
+    });
+    expect(problems).toEqual([
+      'La variante facile et la variante difficile doivent être différentes.',
+    ]);
+    expect(
+      checkSheet(
+        { ...sheet, variante_difficile_id: 'barbell-bench-press' },
+        {
+          exerciseId: 'barbell-bench-press',
+          candidateIds: new Set(['push-up']),
+        },
+      ),
+    ).toHaveLength(1);
+  });
+});

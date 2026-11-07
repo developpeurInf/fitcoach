@@ -77,3 +77,7 @@ export function aiHandler(
     }
   };
 }
+
+/** Same wrapper for functions that never call the AI: no quota is ever consumed. */
+export const userHandler = (functionName: string, handler: (ctx: Ctx) => Promise<Response>) =>
+  aiHandler(functionName, handler, { lazyQuota: true });

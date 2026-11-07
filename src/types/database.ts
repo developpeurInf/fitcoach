@@ -237,6 +237,7 @@ export type Database = {
           image_urls: string[];
           instructions_en: string[];
           instructions_fr: string[];
+          is_reference: boolean | null;
           level: Database['public']['Enums']['fitness_level'];
           license: string | null;
           mechanic: string | null;
@@ -266,6 +267,7 @@ export type Database = {
           image_urls?: string[];
           instructions_en?: string[];
           instructions_fr?: string[];
+          is_reference?: never;
           level?: Database['public']['Enums']['fitness_level'];
           license?: string | null;
           mechanic?: string | null;
@@ -294,6 +296,7 @@ export type Database = {
           image_urls?: string[];
           instructions_en?: string[];
           instructions_fr?: string[];
+          is_reference?: never;
           level?: Database['public']['Enums']['fitness_level'];
           license?: string | null;
           mechanic?: string | null;

@@ -3,7 +3,7 @@
 Application de coaching fitness (iOS, Android, web) avec un coach IA (Claude).
 Un seul code Expo / React Native ; backend Supabase ; appels IA uniquement côté serveur.
 
-> Statut : **phase 7** (coach IA : bilans, adaptation hebdomadaire, chat). Notifications, finitions et déploiement arrivent en phase 8.
+> Statut : **phase 8** terminée : application complète (bibliothèque, séances, progrès, coach IA, rappels, RGPD), prête à déployer.
 
 ## Stack
 
@@ -26,8 +26,8 @@ src/
   app/                        # écrans Expo Router
     _layout.tsx               # providers (Query, thème, i18n, gestures)
     (tabs)/                   # Aujourd'hui, Programme, Exercices, Progrès, Coach
-  components/ui/              # Button, Text, Screen, EmptyState
-  features/                   # logique par domaine (workout, progress, coach…) — phases 3+
+  components/                 # ui/ (Button, Text, Screen, Sheet, Segmented…), charts/
+  features/                   # logique par domaine (session, progress, coach, exercises, reminders, account…)
   i18n/                       # config + traductions fr/en
   lib/                        # supabase, env (Zod), query-client, unités
   stores/                     # stores Zustand (préférences)
@@ -38,7 +38,8 @@ supabase/
   migrations/                 # schéma, RLS, bucket photos, quotas IA
   seed.sql                    # bibliothèque d'exercices (générée)
   tests/database/             # tests pgTAP (RLS, quotas, 1RM)
-  functions/_shared/          # client Anthropic, CORS, auth, prompt du coach
+  functions/                  # 9 Edge Functions (IA, suppression de compte)
+  functions/_shared/          # client Anthropic, CORS, auth, quotas, contrats Zod du coach
 scripts/
   sync-coach-context.mjs      # copie le prompt du coach pour les Edge Functions
   seed-exercises.mjs          # génère supabase/seed.sql depuis free-exercise-db
@@ -225,11 +226,95 @@ npm run lint
 npm test
 ```
 
+## Bibliothèque d'exercices
+
+Onglet **Exercices** : 878 exercices (free-exercise-db, licence Unlicense), ceux de la bibliothèque du
+coach (noms français) en premier. Recherche par mot en français ou en anglais (« pecs haltères »,
+« squat barre », « bench press »), filtres muscle et matériel, chargement par pages de 30.
+
+La **fiche technique** (§7 : étapes, erreurs courantes, respiration, variantes plus facile et plus
+difficile) est écrite par le coach la première fois qu'un utilisateur ouvre l'exercice
+(Edge Function `exercise-sheet`), puis enregistrée sur l'exercice et partagée par tous. Les variantes
+sont choisies parmi les exercices de la bibliothèque. Aucun média n'est inventé : photos et GIF
+viennent de la base, la vidéo n'apparaît que si un identifiant YouTube réel est connu.
+
+## Paramètres, rappels et données
+
+- **Profil** : prénom, objectif, séances par semaine, durée, matériel. Le coach en tient compte dès le
+  prochain ajustement de semaine.
+- **Affichage** : thème sombre / clair / système, kg ou lb, taille du texte (×1, ×1,15, ×1,3).
+- **Rappels** (application mobile) : notification locale à l'heure choisie chaque jour de séance des
+  deux semaines à venir, recalculée quand le programme change. La fin du repos sonne aussi quand
+  l'app est en arrière-plan. Toucher le rappel ouvre la séance.
+- **Export** (RGPD, droit d'accès et portabilité) : un fichier JSON avec profil, programmes, séances,
+  séries, records, mesures, bilans, messages et mémoire du chat (les photos sont listées par chemin).
+- **Suppression du compte** (droit à l'effacement) : Edge Function `delete-account`, après avoir tapé
+  « SUPPRIMER ». Les photos sont effacées du Storage, puis le compte ; toutes les tables suivent en cascade.
+
+## Intégration continue
+
+`.github/workflows/ci.yml` lance à chaque pull request :
+
+- `npm run lint`, `npm run typecheck`, `npm test` et le build web ;
+- `deno check` de chaque Edge Function ;
+- les migrations et les tests pgTAP (`supabase db start` puis `supabase test db`).
+
 ## Déploiement
 
-- **Mobile** : EAS (`eas.json` : profils development / preview / production).
-- **Web** : `npx expo export --platform web` puis déploiement du dossier `dist/` sur Vercel ou Netlify (SPA).
-- **Supabase** : `npx supabase link`, `npx supabase db push --include-seed`, `npx supabase functions deploy`,
-  `npx supabase secrets set --env-file supabase/functions/.env`.
+### 1. Supabase (base, Auth, Storage, Edge Functions)
 
-Le détail sera complété en phase 8.
+```bash
+npx supabase login
+npx supabase link --project-ref <ref-du-projet>
+npx supabase db push --include-seed              # schéma, RLS, bucket photos, bibliothèque d'exercices
+npx supabase secrets set --env-file supabase/functions/.env   # ANTHROPIC_API_KEY, CLAUDE_MODEL
+npx supabase functions deploy                    # les 9 Edge Functions
+```
+
+`SUPABASE_URL`, `SUPABASE_ANON_KEY` et `SUPABASE_SERVICE_ROLE_KEY` sont fournies automatiquement aux
+Edge Functions par Supabase : ne les mets pas dans les secrets.
+
+Dans le tableau de bord Supabase :
+
+- **Authentication → URL Configuration** : `Site URL` = l'URL du site web, et dans les redirections
+  l'URL du site, `fitcoach://**` (app mobile).
+- **Authentication → Providers** : Google (voir plus haut) ; garde la confirmation d'email activée.
+- **Authentication → Emails** : configure un SMTP pour la production (le SMTP intégré est limité).
+
+### 2. Web (Vercel ou Netlify)
+
+Le site est une application monopage statique (`dist/`).
+
+- **Vercel** : importe le dépôt ; `vercel.json` donne la commande de build, le dossier `dist` et la
+  réécriture de toutes les routes vers `index.html`.
+- **Netlify** : importe le dépôt ; `netlify.toml` fait la même chose.
+
+Dans les deux cas, ajoute les variables d'environnement du projet :
+`EXPO_PUBLIC_SUPABASE_URL` et `EXPO_PUBLIC_SUPABASE_ANON_KEY` (clé publique, jamais la clé service
+role ni la clé Anthropic). Ajoute ensuite l'URL du site dans les redirections Supabase.
+
+### 3. Mobile (EAS)
+
+```bash
+npm install -g eas-cli
+eas login
+eas init                                         # lie le projet Expo (ajoute projectId dans app.json)
+eas env:create --environment production --name EXPO_PUBLIC_SUPABASE_URL --value https://<ref>.supabase.co --visibility plaintext
+eas env:create --environment production --name EXPO_PUBLIC_SUPABASE_ANON_KEY --value <clé publique> --visibility plaintext
+eas build --profile preview --platform all       # build interne à installer sur ton téléphone
+eas build --profile production --platform all    # builds pour les stores
+eas submit --platform ios                        # App Store Connect (compte Apple Developer)
+eas submit --platform android                    # Google Play (compte développeur)
+```
+
+Les profils `development`, `preview` et `production` de `eas.json` lisent les variables de
+l'environnement EAS du même nom. Les identifiants `com.fitcoach.app` (iOS et Android) sont à
+remplacer par les tiens avant la première publication.
+
+### Avant la mise en ligne
+
+- Remplace la clé Anthropic de test par une clé de production et surveille la consommation
+  (`ai_usage` en base, limites par fonction dans `ai_limits`).
+- Fais relire le texte de consentement santé / RGPD et ajoute une politique de confidentialité
+  (exigée par l'App Store et Google Play).
+- Vérifie la licence des médias si tu ajoutes d'autres sources que free-exercise-db.

@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { Platform, Pressable, Vibration, View } from 'react-native';
 
 import { ProgressBar, Text } from '@/components/ui';
+import { cancelNotification, scheduleRestEnd } from '@/lib/notifications';
 import { colors } from '@/theme/tokens';
 
 import { formatClock, restSecondsLeft } from './logic';
@@ -34,6 +35,21 @@ export function RestTimer() {
   }, [restEndsAt]);
 
   const left = restSecondsLeft(restEndsAt, now);
+
+  // If the app goes to the background, the end of the rest still rings (mobile app).
+  useEffect(() => {
+    if (restEndsAt == null) return;
+    let id: string | null = null;
+    let cancelled = false;
+    void scheduleRestEnd(restEndsAt, t('session.rest.done'), t('reminders.restBody')).then((n) => {
+      if (cancelled && n) void cancelNotification(n);
+      else id = n;
+    });
+    return () => {
+      cancelled = true;
+      if (id) void cancelNotification(id);
+    };
+  }, [restEndsAt, t]);
 
   useEffect(() => {
     if (restEndsAt == null || left > 0 || firedFor.current === restEndsAt) return;

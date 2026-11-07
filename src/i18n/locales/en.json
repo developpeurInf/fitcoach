@@ -56,8 +56,87 @@
   },
   "exercises": {
     "title": "Exercises",
-    "emptyTitle": "Library coming soon",
-    "emptyBody": "Search by muscle, equipment or level."
+    "emptyTitle": "No exercise found",
+    "emptyBody": "Try another word or remove a filter.",
+    "search": "Search an exercise or a muscle",
+    "all": "All",
+    "count_one": "{{count}} exercise",
+    "count_other": "{{count}} exercises",
+    "loadMore": "Show more",
+    "groups": {
+      "chest": "Chest",
+      "back": "Back",
+      "shoulders": "Shoulders",
+      "arms": "Arms",
+      "legs": "Legs",
+      "core": "Core"
+    },
+    "equipmentFilters": {
+      "bodyweight": "Bodyweight",
+      "dumbbell": "Dumbbells",
+      "barbell": "Barbell",
+      "machine": "Machines",
+      "cable": "Cables",
+      "kettlebell": "Kettlebell",
+      "bands": "Bands"
+    },
+    "muscles": {
+      "abdominals": "abdominals",
+      "abductors": "abductors",
+      "adductors": "adductors",
+      "biceps": "biceps",
+      "calves": "calves",
+      "chest": "chest",
+      "forearms": "forearms",
+      "glutes": "glutes",
+      "hamstrings": "hamstrings",
+      "lats": "lats",
+      "lower-back": "lower back",
+      "middle-back": "middle back",
+      "neck": "neck",
+      "quadriceps": "quadriceps",
+      "shoulders": "shoulders",
+      "traps": "traps",
+      "triceps": "triceps"
+    },
+    "equipmentTags": {
+      "bands": "bands",
+      "barbell": "barbell",
+      "bodyweight": "bodyweight",
+      "cable": "cable",
+      "dumbbell": "dumbbell",
+      "exercise-ball": "exercise ball",
+      "ez-bar": "ez bar",
+      "foam-roller": "foam roller",
+      "kettlebell": "kettlebell",
+      "machine": "machine",
+      "medicine-ball": "medicine ball",
+      "other": "other"
+    },
+    "levels": {
+      "beginner": "Beginner",
+      "intermediate": "Intermediate",
+      "advanced": "Advanced"
+    },
+    "filtersGroup": "Muscle",
+    "filtersEquipment": "Equipment",
+    "sheet": {
+      "primary": "Target muscles",
+      "secondary": "Secondary muscles",
+      "equipment": "Equipment",
+      "steps": "How to",
+      "mistakes": "Common mistakes",
+      "breathing": "Breathing",
+      "easier": "Easier",
+      "harder": "Harder",
+      "variants": "Variants",
+      "loading": "Your coach is writing the technique sheet…",
+      "error": "The sheet isn’t available right now. Here are the original instructions.",
+      "sourceSteps": "Instructions",
+      "frames": "Start and end position",
+      "noMedia": "No illustration for this exercise.",
+      "credit": "Illustrations: free-exercise-db (Unlicense)"
+    }
   },
   "progress": {
     "title": "Progress",
@@ -263,7 +342,8 @@
     "retry": "Retry",
     "loading": "Loading…",
     "error": "Something went wrong.",
-    "close": "Close"
+    "close": "Close",
+    "clear": "Clear"
   },
   "auth": {
     "tagline": "Your AI coach, every day, every set.",
@@ -455,7 +535,43 @@
     }
   },
   "settings": {
-    "title": "Settings"
+    "title": "Settings",
+    "profile": "My profile",
+    "firstName": "First name",
+    "goal": "Main goal",
+    "days": "Sessions per week",
+    "minutes": "Session length",
+    "equipment": "Equipment",
+    "save": "Save",
+    "saved": "Profile saved. Your coach will use it from the next weekly adjustment.",
+    "display": "Display",
+    "theme": "Theme",
+    "themes": {
+      "dark": "Dark",
+      "light": "Light",
+      "system": "System"
+    },
+    "unit": "Weight unit",
+    "fontScale": "Text size",
+    "fontScales": {
+      "1": "Normal",
+      "1.15": "Large",
+      "1.3": "Extra large"
+    },
+    "data": "My data",
+    "dataBody": "Download all your data (profile, programs, sessions, measurements, reports, messages) as a JSON file.",
+    "export": "Export my data",
+    "exported": "Export ready.",
+    "exportError": "Export failed. Try again.",
+    "delete": "Delete my account",
+    "deleteTitle": "Delete your account?",
+    "deleteBody": "Your account and all your data (sessions, measurements, photos, reports, messages) will be permanently deleted. This cannot be undone.",
+    "deleteConfirmLabel": "Type SUPPRIMER to confirm",
+    "deleteConfirmWord": "SUPPRIMER",
+    "deleteError": "Deletion failed. Try again or contact support.",
+    "account": "Account",
+    "signedInAs": "Signed in as {{email}}",
+    "about": "FitCoach {{version}} · Your coach does not replace medical advice."
   },
   "workout": {
     "start": "Start",
@@ -475,7 +591,8 @@
     "restDayBody": "Recover well: rest is when you progress.",
     "notFound": "Session not found.",
     "programDone": "Program complete! Your coach can build a new one.",
-    "completed": "Done"
+    "completed": "Done",
+    "openSheet": "Opens the technique sheet"
   },
   "session": {
     "resume": "Resume workout",
@@ -603,5 +720,15 @@
       "max_reps": "Max reps",
       "max_volume": "Max volume"
     }
+  },
+  "reminders": {
+    "workoutTitle": "Time for your workout 💪",
+    "workoutBody": "On the plan: {{title}}. Your coach is waiting.",
+    "restBody": "Rest is over: next set.",
+    "title": "Reminders",
+    "enable": "Remind me on workout days",
+    "time": "Reminder time",
+    "webOnly": "Reminders are available in the mobile app.",
+    "denied": "Notifications are turned off for FitCoach in your phone settings."
   }
 }
