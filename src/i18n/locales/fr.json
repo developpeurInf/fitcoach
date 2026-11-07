@@ -61,8 +61,103 @@
   },
   "progress": {
     "title": "Progrès",
-    "emptyTitle": "Aucune donnée pour l’instant",
-    "emptyBody": "Tes graphiques et records s’afficheront après ta première séance."
+    "emptyTitle": "Tes progrès arrivent",
+    "emptyBody": "Termine ta première séance pour voir tes graphiques.",
+    "periods": {
+      "day": "Jour",
+      "week": "Semaine",
+      "month": "Mois",
+      "quarter": "Trimestre",
+      "year": "Année"
+    },
+    "periodHint": {
+      "day": "14 derniers jours",
+      "week": "12 dernières semaines",
+      "month": "12 derniers mois",
+      "quarter": "8 derniers trimestres",
+      "year": "5 dernières années"
+    },
+    "current": {
+      "day": "Aujourd’hui",
+      "week": "Cette semaine",
+      "month": "Ce mois-ci",
+      "quarter": "Ce trimestre",
+      "year": "Cette année"
+    },
+    "kpi": {
+      "sessions": "Séances",
+      "volume": "Tonnage",
+      "adherence": "Assiduité",
+      "streak": "Série en cours",
+      "streakValue_one": "{{count}} séance",
+      "streakValue_other": "{{count}} séances",
+      "streakHint": "séances prévues faites d’affilée",
+      "vsPrevious": "{{value}} % vs période précédente"
+    },
+    "charts": {
+      "volume": "Tonnage",
+      "volumeBy": "Tonnage par {{period}}",
+      "adherence": "Assiduité",
+      "adherenceBy": "Séances faites / prévues par {{period}}",
+      "adherenceDetail": "{{done}} / {{planned}} séances",
+      "weight": "Poids corporel",
+      "measurements": "Mensurations",
+      "oneRm": "1RM estimé",
+      "oneRmHint": "Formule d’Epley : charge × (1 + reps / 30), meilleure série de la période.",
+      "noData": "Pas encore de données sur cette période.",
+      "noExercise": "Fais une séance avec charge pour suivre ton 1RM estimé."
+    },
+    "periodNames": {
+      "day": "jour",
+      "week": "semaine",
+      "month": "mois",
+      "quarter": "trimestre",
+      "year": "année"
+    },
+    "metrics": {
+      "waist_cm": "Tour de taille",
+      "chest_cm": "Poitrine",
+      "hips_cm": "Hanches",
+      "arm_cm": "Bras",
+      "thigh_cm": "Cuisse",
+      "body_fat_pct": "Masse grasse"
+    },
+    "records": {
+      "title": "Records personnels",
+      "seeAll": "Voir tous les records",
+      "empty": "Tes records apparaîtront ici après tes premières séances.",
+      "new": "Nouveau"
+    },
+    "measure": {
+      "title": "Nouvelle mesure",
+      "add": "Ajouter une mesure",
+      "history": "Mesures et photos",
+      "date": "Date",
+      "weight": "Poids",
+      "waist": "Tour de taille",
+      "chest": "Poitrine",
+      "hips": "Hanches",
+      "arm": "Bras",
+      "thigh": "Cuisse",
+      "bodyFat": "Masse grasse",
+      "notes": "Notes",
+      "photo": "Photo de progression",
+      "addPhoto": "Ajouter une photo",
+      "takePhoto": "Prendre une photo",
+      "removePhoto": "Retirer la photo",
+      "save": "Enregistrer",
+      "saved": "Mesure enregistrée",
+      "error": "L’enregistrement a échoué. Réessaie.",
+      "empty": "Au moins une mesure ou une photo est nécessaire.",
+      "invalid": "Valeur hors limites",
+      "invalidDate": "Date au format AAAA-MM-JJ, pas dans le futur",
+      "emptyHistory": "Aucune mesure pour l’instant.",
+      "delete": "Supprimer",
+      "deleteConfirm": "Supprimer cette mesure et sa photo ?",
+      "photos": "Photos",
+      "privacy": "Tes photos sont privées : elles ne sont visibles que par toi.",
+      "permission": "Autorise l’accès aux photos dans les réglages pour en ajouter."
+    }
   },
   "coach": {
     "title": "Coach",

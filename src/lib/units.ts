@@ -21,3 +21,9 @@ export function toKg(value: number, unit: WeightUnit): number {
 export function formatWeight(kg: number, unit: WeightUnit, locale = 'fr'): string {
   return `${displayWeight(kg, unit).toLocaleString(locale, { maximumFractionDigits: 1 })} ${unit}`;
 }
+
+/** Body weight keeps one decimal (loads use displayWeight's 0.5 steps): "80,9 kg". */
+export function formatBodyWeight(kg: number, unit: WeightUnit, locale = 'fr'): string {
+  const value = Math.round((unit === 'kg' ? kg : kgToLb(kg)) * 10) / 10;
+  return `${value.toLocaleString(locale, { maximumFractionDigits: 1 })} ${unit}`;
+}

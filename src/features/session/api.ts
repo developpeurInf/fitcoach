@@ -93,6 +93,7 @@ export function useFinishSession() {
     onSuccess: () => {
       void queryClient.invalidateQueries({ queryKey: ['program'] });
       void queryClient.invalidateQueries({ queryKey: ['workout'] });
+      void queryClient.invalidateQueries({ queryKey: ['progress'] });
     },
   });
 }

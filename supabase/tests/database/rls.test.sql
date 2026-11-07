@@ -25,8 +25,8 @@ insert into public.coach_reports (user_id, report_type, period_start, period_end
 values ('11111111-1111-1111-1111-111111111111', 'weekly', current_date - 6, current_date, '{}');
 
 -- Generated columns: tonnage and Epley 1RM.
-select is((select volume_kg from public.set_logs limit 1), 480.00::numeric, 'volume = reps × load');
-select is((select estimated_1rm_kg from public.set_logs limit 1), 76.00::numeric, 'Epley: 60 × (1 + 8/30) = 76');
+select is((select volume_kg from public.set_logs where workout_log_id = 'aaaaaaaa-0000-0000-0000-000000000003'), 480.00::numeric, 'volume = reps × load');
+select is((select estimated_1rm_kg from public.set_logs where workout_log_id = 'aaaaaaaa-0000-0000-0000-000000000003'), 76.00::numeric, 'Epley: 60 × (1 + 8/30) = 76');
 
 -- ---- Act as Bob -------------------------------------------------------------
 set local role authenticated;

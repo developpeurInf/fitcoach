@@ -44,7 +44,14 @@
         }
       ],
       "expo-web-browser",
-      "expo-audio"
+      "expo-audio",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "FitCoach accède à tes photos pour enregistrer tes photos de progression.",
+          "cameraPermission": "FitCoach utilise l’appareil photo pour tes photos de progression."
+        }
+      ]
     ],
     "scheme": "fitcoach",
     "backgroundColor": "#0B0D0E",
