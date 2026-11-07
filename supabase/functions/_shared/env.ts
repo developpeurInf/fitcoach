@@ -11,4 +11,7 @@ export const serverEnv = {
   claudeModel: () => Deno.env.get('CLAUDE_MODEL') ?? 'claude-sonnet-5-5',
   supabaseUrl: () => required('SUPABASE_URL'),
   supabaseAnonKey: () => required('SUPABASE_ANON_KEY'),
+  // Provided automatically to hosted Edge Functions. Only used to write what users must not forge
+  // (coach reports, the coach's chat replies), always for the authenticated user's own id.
+  supabaseServiceRoleKey: () => required('SUPABASE_SERVICE_ROLE_KEY'),
 };

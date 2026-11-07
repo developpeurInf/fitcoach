@@ -119,6 +119,28 @@ export type Database = {
         };
         Relationships: [];
       };
+      chat_memory: {
+        Row: {
+          summarized_until: string;
+          summary: string;
+          updated_at: string;
+          user_id: string;
+        };
+        ComputedFields: never;
+        Insert: {
+          summarized_until: string;
+          summary: string;
+          updated_at?: string;
+          user_id: string;
+        };
+        Update: {
+          summarized_until?: string;
+          summary?: string;
+          updated_at?: string;
+          user_id?: string;
+        };
+        Relationships: [];
+      };
       chat_messages: {
         Row: {
           content: string;
@@ -792,6 +814,8 @@ export type Database = {
       };
     };
     Functions: {
+      coach_history: { Args: { p_limit?: number }; Returns: Json };
+      coach_period_metrics: { Args: { p_from: string; p_to: string }; Returns: Json };
       consume_ai_quota: { Args: { p_function: string }; Returns: boolean };
       create_program: { Args: { p_program: Json; p_workouts: Json }; Returns: string };
       detect_personal_records: {

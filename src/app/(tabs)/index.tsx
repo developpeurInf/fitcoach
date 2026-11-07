@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { ActivityIndicator, Pressable, View } from 'react-native';
 
 import { Button, EmptyState, Notice, Screen, Text } from '@/components/ui';
+import { AdaptationCard } from '@/features/coach/AdaptationCard';
 import { localDate, useActiveProgram, useProgramWorkouts } from '@/features/program/api';
 import { GenerateProgram } from '@/features/program/GenerateProgram';
 import { WorkoutCard } from '@/features/program/WorkoutCard';
@@ -59,6 +60,7 @@ export default function TodayScreen() {
       ) : (
         <View className="gap-5">
           <ActiveSessionBanner />
+          <AdaptationCard programId={program.data.id} workouts={workouts.data ?? []} />
           {warnings.length ? (
             <Notice tone="warning" title={t('program.warningsTitle')}>
               {warnings.join('\n')}

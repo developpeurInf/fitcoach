@@ -4,7 +4,13 @@ import { AiOutputError } from './anthropic.ts';
 import { getUserClient } from './auth.ts';
 import { corsHeaders, json } from './cors.ts';
 
-export type Ctx = { req: Request; client: SupabaseClient; user: User };
+export type Ctx = {
+  req: Request;
+  client: SupabaseClient;
+  user: User;
+  /** With `lazyQuota`, call this right before the AI call (so cached answers cost no quota). */
+  useQuota: () => Promise<void>;
+};
 
 /** Error codes the app maps to translated messages. */
 export type ErrorCode =
@@ -22,9 +28,13 @@ export class HttpError extends Error {
 
 /**
  * Wraps an AI Edge Function: CORS, authentication (RLS-bound client), per-user quota
- * (consume_ai_quota), and uniform JSON errors: { error: { code, message } }.
+ * (consume_ai_quota, upfront unless `lazyQuota`), and uniform JSON errors: { error: { code, message } }.
  */
-export function aiHandler(functionName: string, handler: (ctx: Ctx) => Promise<Response>) {
+export function aiHandler(
+  functionName: string,
+  handler: (ctx: Ctx) => Promise<Response>,
+  opts: { lazyQuota?: boolean } = {},
+) {
   return async (req: Request): Promise<Response> => {
     if (req.method === 'OPTIONS') return new Response('ok', { headers: corsHeaders });
     try {
@@ -32,18 +42,24 @@ export function aiHandler(functionName: string, handler: (ctx: Ctx) => Promise<R
       const auth = await getUserClient(req);
       if (!auth) throw new HttpError(401, 'unauthorized', 'Connexion requise.');
 
-      const { data: allowed, error } = await auth.client.rpc('consume_ai_quota', {
-        p_function: functionName,
-      });
-      if (error) throw error;
-      if (!allowed) {
-        throw new HttpError(
-          429,
-          'rate_limited',
-          'Tu as atteint la limite d’appels au coach. Réessaie plus tard.',
-        );
-      }
-      return await handler({ req, ...auth });
+      let consumed = false;
+      const useQuota = async () => {
+        if (consumed) return;
+        consumed = true;
+        const { data: allowed, error } = await auth.client.rpc('consume_ai_quota', {
+          p_function: functionName,
+        });
+        if (error) throw error;
+        if (!allowed) {
+          throw new HttpError(
+            429,
+            'rate_limited',
+            'Tu as atteint la limite d’appels au coach. Réessaie plus tard.',
+          );
+        }
+      };
+      if (!opts.lazyQuota) await useQuota();
+      return await handler({ req, ...auth, useQuota });
     } catch (e) {
       if (e instanceof HttpError)
         return json({ error: { code: e.code, message: e.message } }, e.status);
