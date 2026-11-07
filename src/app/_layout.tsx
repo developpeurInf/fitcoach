@@ -62,6 +62,7 @@ function RootNavigator() {
         <Stack.Screen name="session" options={{ gestureEnabled: false }} />
         <Stack.Screen name="progress" />
         <Stack.Screen name="coach" />
+        <Stack.Screen name="exercise" />
         <Stack.Screen name="settings" options={{ presentation: 'modal' }} />
       </Stack.Protected>
     </Stack>

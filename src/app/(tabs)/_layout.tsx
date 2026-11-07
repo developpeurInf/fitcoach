@@ -5,6 +5,10 @@ import type { ComponentProps } from 'react';
 import type { ColorValue } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
+import {
+  useNotificationNavigation,
+  useWorkoutReminders,
+} from '@/features/reminders/useWorkoutReminders';
 import { colors } from '@/theme/tokens';
 
 type IconName = ComponentProps<typeof Ionicons>['name'];
@@ -20,6 +24,8 @@ export default function TabsLayout() {
   const { t } = useTranslation();
   const { colorScheme } = useColorScheme();
   const dark = colorScheme !== 'light';
+  useWorkoutReminders();
+  useNotificationNavigation();
 
   return (
     <Tabs

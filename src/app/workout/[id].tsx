@@ -115,7 +115,12 @@ function ExerciseRow({ item }: { item: WorkoutWithExercises['workout_exercises']
   ].filter(Boolean);
 
   return (
-    <View className="flex-row gap-4 rounded-2xl border border-ink-100 bg-white p-3 dark:border-ink-800 dark:bg-ink-900">
+    <Pressable
+      accessibilityRole="link"
+      accessibilityHint={t('workout.openSheet')}
+      onPress={() => router.push({ pathname: '/exercise/[id]', params: { id: item.exercise_id } })}
+      className="flex-row gap-4 rounded-2xl border border-ink-100 bg-white p-3 active:opacity-70 dark:border-ink-800 dark:bg-ink-900"
+    >
       <View className="h-20 w-20 overflow-hidden rounded-xl bg-ink-100 dark:bg-ink-800">
         {image ? (
           <Image
@@ -140,6 +145,6 @@ function ExerciseRow({ item }: { item: WorkoutWithExercises['workout_exercises']
         <Text variant="caption">{meta.join(' · ')}</Text>
         {item.notes ? <Text variant="caption">{item.notes}</Text> : null}
       </View>
-    </View>
+    </Pressable>
   );
 }

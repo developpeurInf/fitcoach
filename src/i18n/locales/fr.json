@@ -56,8 +56,87 @@
   },
   "exercises": {
     "title": "Exercices",
-    "emptyTitle": "Bibliothèque bientôt disponible",
-    "emptyBody": "Recherche par muscle, matériel ou niveau."
+    "emptyTitle": "Aucun exercice trouvé",
+    "emptyBody": "Essaie un autre mot ou retire un filtre.",
+    "search": "Rechercher un exercice ou un muscle",
+    "all": "Tous",
+    "count_one": "{{count}} exercice",
+    "count_other": "{{count}} exercices",
+    "loadMore": "Voir plus",
+    "groups": {
+      "chest": "Pectoraux",
+      "back": "Dos",
+      "shoulders": "Épaules",
+      "arms": "Bras",
+      "legs": "Jambes",
+      "core": "Abdos"
+    },
+    "equipmentFilters": {
+      "bodyweight": "Poids du corps",
+      "dumbbell": "Haltères",
+      "barbell": "Barre",
+      "machine": "Machines",
+      "cable": "Poulies",
+      "kettlebell": "Kettlebell",
+      "bands": "Élastiques"
+    },
+    "muscles": {
+      "abdominals": "abdominaux",
+      "abductors": "abducteurs",
+      "adductors": "adducteurs",
+      "biceps": "biceps",
+      "calves": "mollets",
+      "chest": "pectoraux",
+      "forearms": "avant-bras",
+      "glutes": "fessiers",
+      "hamstrings": "ischio-jambiers",
+      "lats": "grand dorsal",
+      "lower-back": "lombaires",
+      "middle-back": "milieu du dos",
+      "neck": "cou",
+      "quadriceps": "quadriceps",
+      "shoulders": "épaules",
+      "traps": "trapèzes",
+      "triceps": "triceps"
+    },
+    "equipmentTags": {
+      "bands": "élastiques",
+      "barbell": "barre",
+      "bodyweight": "poids du corps",
+      "cable": "poulie",
+      "dumbbell": "haltères",
+      "exercise-ball": "swiss ball",
+      "ez-bar": "barre EZ",
+      "foam-roller": "rouleau",
+      "kettlebell": "kettlebell",
+      "machine": "machine",
+      "medicine-ball": "médecine-ball",
+      "other": "autre"
+    },
+    "levels": {
+      "beginner": "Débutant",
+      "intermediate": "Intermédiaire",
+      "advanced": "Avancé"
+    },
+    "filtersGroup": "Muscle",
+    "filtersEquipment": "Matériel",
+    "sheet": {
+      "primary": "Muscles ciblés",
+      "secondary": "Muscles secondaires",
+      "equipment": "Matériel",
+      "steps": "Exécution",
+      "mistakes": "Erreurs courantes",
+      "breathing": "Respiration",
+      "easier": "Plus facile",
+      "harder": "Plus difficile",
+      "variants": "Variantes",
+      "loading": "Ton coach prépare la fiche technique…",
+      "error": "La fiche en français n’est pas disponible pour l’instant. Voici les instructions d’origine (en anglais).",
+      "sourceSteps": "Instructions (anglais)",
+      "frames": "Position de départ et d’arrivée",
+      "noMedia": "Pas d’illustration pour cet exercice.",
+      "credit": "Illustrations : free-exercise-db (licence Unlicense)"
+    }
   },
   "progress": {
     "title": "Progrès",
@@ -263,7 +342,8 @@
     "retry": "Réessayer",
     "loading": "Chargement…",
     "error": "Une erreur est survenue.",
-    "close": "Fermer"
+    "close": "Fermer",
+    "clear": "Effacer"
   },
   "auth": {
     "tagline": "Ton coach IA, chaque jour, à chaque série.",
@@ -455,7 +535,43 @@
     }
   },
   "settings": {
-    "title": "Paramètres"
+    "title": "Paramètres",
+    "profile": "Mon profil",
+    "firstName": "Prénom",
+    "goal": "Objectif principal",
+    "days": "Séances par semaine",
+    "minutes": "Durée d’une séance",
+    "equipment": "Matériel",
+    "save": "Enregistrer",
+    "saved": "Profil enregistré. Ton coach en tient compte dès le prochain ajustement de semaine.",
+    "display": "Affichage",
+    "theme": "Thème",
+    "themes": {
+      "dark": "Sombre",
+      "light": "Clair",
+      "system": "Système"
+    },
+    "unit": "Unité de poids",
+    "fontScale": "Taille du texte",
+    "fontScales": {
+      "1": "Normal",
+      "1.15": "Grand",
+      "1.3": "Très grand"
+    },
+    "data": "Mes données",
+    "dataBody": "Télécharge toutes tes données (profil, programmes, séances, mesures, bilans, messages) dans un fichier JSON.",
+    "export": "Exporter mes données",
+    "exported": "Export prêt.",
+    "exportError": "L’export a échoué. Réessaie.",
+    "delete": "Supprimer mon compte",
+    "deleteTitle": "Supprimer ton compte ?",
+    "deleteBody": "Ton compte et toutes tes données (séances, mesures, photos, bilans, messages) seront supprimés définitivement. Cette action est irréversible.",
+    "deleteConfirmLabel": "Tape SUPPRIMER pour confirmer",
+    "deleteConfirmWord": "SUPPRIMER",
+    "deleteError": "La suppression a échoué. Réessaie ou contacte le support.",
+    "account": "Compte",
+    "signedInAs": "Connecté avec {{email}}",
+    "about": "FitCoach {{version}} · Ton coach ne remplace pas un avis médical."
   },
   "workout": {
     "start": "Commencer",
@@ -475,7 +591,8 @@
     "restDayBody": "Récupère bien : c’est pendant le repos que tu progresses.",
     "notFound": "Séance introuvable.",
     "programDone": "Programme terminé ! Ton coach peut t’en préparer un nouveau.",
-    "completed": "Séance faite"
+    "completed": "Séance faite",
+    "openSheet": "Ouvre la fiche technique"
   },
   "session": {
     "resume": "Reprendre la séance",
@@ -603,5 +720,15 @@
       "max_reps": "Reps max",
       "max_volume": "Volume max"
     }
+  },
+  "reminders": {
+    "workoutTitle": "C’est l’heure de ta séance 💪",
+    "workoutBody": "Au programme : {{title}}. Ton coach t’attend.",
+    "restBody": "Repos terminé : place à la série suivante.",
+    "title": "Rappels",
+    "enable": "Rappel les jours de séance",
+    "time": "Heure du rappel",
+    "webOnly": "Les rappels sont disponibles dans l’application mobile.",
+    "denied": "Les notifications sont désactivées pour FitCoach dans les réglages de ton téléphone."
   }
 }
