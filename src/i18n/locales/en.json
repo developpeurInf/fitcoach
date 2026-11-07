@@ -161,8 +161,103 @@
   },
   "coach": {
     "title": "Coach",
-    "emptyTitle": "Your coach is ready",
-    "emptyBody": "Ask about your program, technique or recovery."
+    "emptyTitle": "Your coach is waiting",
+    "emptyBody": "Ask about your program, technique or recovery.",
+    "tabs": {
+      "chat": "Chat",
+      "reports": "Reports"
+    },
+    "chat": {
+      "placeholder": "Type your message…",
+      "send": "Send",
+      "typing": "Your coach is typing…",
+      "disclaimer": "Your coach doesn't replace medical advice.",
+      "error": "The coach couldn't answer. Try again.",
+      "rateLimited": "You've written a lot to the coach: try again later.",
+      "you": "You",
+      "coach": "Coach",
+      "inSessionTitle": "Quick question to the coach",
+      "inSessionHint": "Short answer: you're mid-workout.",
+      "suggestions": [
+        "I only have 20 minutes today",
+        "What should I eat after training?",
+        "How can I recover better?",
+        "My knee bothers me on squats"
+      ],
+      "sessionSuggestions": [
+        "Can I increase the load?",
+        "How long should I rest here?",
+        "Exercise too hard, what now?"
+      ]
+    },
+    "reports": {
+      "generate": "Ask for a report",
+      "types": {
+        "session": "Workout",
+        "weekly": "Week",
+        "monthly": "Month",
+        "quarterly": "Quarter",
+        "yearly": "Year",
+        "adaptation": "Adjustment"
+      },
+      "titles": {
+        "session": "Workout report",
+        "weekly": "Weekly report",
+        "monthly": "Monthly report",
+        "quarterly": "Quarterly report",
+        "yearly": "Yearly report",
+        "adaptation": "Week {{week}} adjustment"
+      },
+      "period": "From {{start}} to {{end}}",
+      "empty": "Your reports will show up here. Ask for your first one above.",
+      "generating": "Your coach is preparing your report…",
+      "error": "The report couldn't be created.",
+      "notEnough": "Not enough data for this period yet.",
+      "attendance": "Attendance",
+      "sessions": "Workouts",
+      "volume": "Volume",
+      "volumeChange": "vs previous period",
+      "feeling": "Average feeling",
+      "energy": "Average energy",
+      "strengths": "Strengths",
+      "improve": "To improve",
+      "stalled": "Stalling",
+      "nextAdjustments": "Next adjustments",
+      "decision": "Decision",
+      "decisions": {
+        "continuer": "Keep going",
+        "ajuster": "Adjust",
+        "changer_de_bloc": "New block"
+      },
+      "milestones": "Milestones",
+      "nextGoals": "Next cycle goals",
+      "records": "Records",
+      "bodyChange": "Body",
+      "keyLifts": "Key lifts",
+      "musclesSets": "Sets per muscle",
+      "nextLoads": "Loads for next time",
+      "changes": "Changes",
+      "alerts": "Alerts",
+      "weekDecision": {
+        "progression": "Progression",
+        "maintien": "Maintain",
+        "decharge": "Deload",
+        "reprise": "Easy restart"
+      },
+      "from": "before: {{name}}"
+    },
+    "session": {
+      "title": "Coach's take",
+      "loading": "Your coach is reviewing your workout…",
+      "error": "The coach's report isn't available right now.",
+      "improve": "To improve"
+    },
+    "adapt": {
+      "title": "Your coach adjusted your week",
+      "loading": "Your coach is adjusting your week…",
+      "see": "See the changes",
+      "none": "No change: we keep the plan."
+    }
   },
   "common": {
     "retry": "Retry",

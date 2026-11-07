@@ -3,7 +3,7 @@
 Application de coaching fitness (iOS, Android, web) avec un coach IA (Claude).
 Un seul code Expo / React Native ; backend Supabase ; appels IA uniquement côté serveur.
 
-> Statut : **phase 6** (suivi de progression). Les bilans IA, l'adaptation hebdomadaire et le chat arrivent en phase 7.
+> Statut : **phase 7** (coach IA : bilans, adaptation hebdomadaire, chat). Notifications, finitions et déploiement arrivent en phase 8.
 
 ## Stack
 
@@ -182,6 +182,25 @@ relance sur un autre modèle au lieu d'échouer.
 - **Mesures** : poids, tours (taille, poitrine, hanches, bras, cuisse), masse grasse, notes et photo.
   Les photos vont dans le bucket privé `progress-photos/<user_id>/…` et s'affichent par URL signée.
   Le dernier poids mesuré met à jour le profil (déclencheur), utilisé par le coach.
+
+## Coach IA (bilans, adaptation, chat)
+
+Quatre Edge Functions, toutes avec la clé Anthropic côté serveur, JSON validé par Zod (un nouvel essai,
+puis une erreur claire) et un quota par utilisateur (consommé seulement quand l'IA est vraiment appelée) :
+
+| Fonction           | Quand                                                         | Ce qu'elle fait                                                                                      |
+| ------------------ | ------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `session-feedback` | écran de fin de séance                                        | bilan court, points forts, charges conseillées pour la prochaine fois (exercices faits uniquement)   |
+| `periodic-report`  | onglet Coach › Bilans (semaine, mois, trimestre, année)       | chiffres calculés par Postgres (`coach_period_metrics`), le coach commente sans inventer de chiffres |
+| `adapt-week`       | automatiquement sur Aujourd'hui, 2 jours avant une semaine 2+ | ajuste charges, volume et exercices de la semaine (§3.6) ; une seule fois par semaine                |
+| `chat`             | onglet Coach et bouton « Coach » pendant la séance            | réponse en streaming (SSE) ; réponses de 1 à 2 phrases pendant une séance                            |
+
+- **Historique résumé** : `coach_history(n)` envoie une ligne par exercice et par séance (séries,
+  reps « 8/8/7 », charge max, 1RM estimé, RPE moyen, prévu), jamais chaque série.
+- **Mémoire du chat** : les 20 derniers messages sont envoyés tels quels ; au-delà de 40 messages non
+  résumés, les plus anciens sont résumés dans `chat_memory` (écrite par le serveur seulement).
+- **Rapports** : tous dans `coach_reports` (types `session`, `weekly`, `monthly`, `quarterly`,
+  `yearly`, `adaptation`), en lecture seule pour l'utilisateur.
 
 ### Tester les Edge Functions en local
 

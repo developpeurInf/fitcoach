@@ -10,6 +10,7 @@ import { Button, ProgressBar, Sheet, Text } from '@/components/ui';
 import { useUserId } from '@/features/auth/store';
 import { ExerciseMedia } from '@/features/session/ExerciseMedia';
 import { currentSetIndex, formatClock, type SessionExercise } from '@/features/session/logic';
+import { ChatView } from '@/features/coach/ChatView';
 import { PainSheet } from '@/features/session/PainSheet';
 import { RestTimer } from '@/features/session/RestTimer';
 import { SetRow } from '@/features/session/SetRow';
@@ -22,7 +23,7 @@ import { colors } from '@/theme/tokens';
 
 import type { SwapReason } from '@coach/swap';
 
-type Panel = null | 'leave' | 'pain' | { swap: SwapReason | undefined };
+type Panel = null | 'leave' | 'pain' | 'coach' | { swap: SwapReason | undefined };
 
 /** The session in progress: one exercise at a time, sets logged in one tap, rest timer. */
 export default function SessionScreen() {
@@ -106,6 +107,11 @@ export default function SessionScreen() {
             label={t('session.pain.action')}
             onPress={() => setPanel('pain')}
           />
+          <ActionChip
+            icon="chatbubbles-outline"
+            label={t('coach.chat.coach')}
+            onPress={() => setPanel('coach')}
+          />
         </View>
 
         <View className="gap-2">
@@ -174,6 +180,14 @@ export default function SessionScreen() {
           label={t('session.abandon')}
           onPress={() => (confirmAbandon ? abandon() : setConfirmAbandon(true))}
         />
+      </Sheet>
+
+      <Sheet
+        visible={panel === 'coach'}
+        title={t('coach.chat.inSessionTitle')}
+        onClose={() => setPanel(null)}
+      >
+        <ChatView inSession embedded />
       </Sheet>
 
       <PainSheet

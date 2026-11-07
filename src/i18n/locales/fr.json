@@ -162,7 +162,102 @@
   "coach": {
     "title": "Coach",
     "emptyTitle": "Ton coach t’attend",
-    "emptyBody": "Pose une question sur ton programme, ta technique ou ta récupération."
+    "emptyBody": "Pose une question sur ton programme, ta technique ou ta récupération.",
+    "tabs": {
+      "chat": "Discussion",
+      "reports": "Bilans"
+    },
+    "chat": {
+      "placeholder": "Écris ton message…",
+      "send": "Envoyer",
+      "typing": "Ton coach écrit…",
+      "disclaimer": "Ton coach ne remplace pas un avis médical.",
+      "error": "Le coach n’a pas pu répondre. Réessaie.",
+      "rateLimited": "Tu as beaucoup écrit au coach : réessaie un peu plus tard.",
+      "you": "Toi",
+      "coach": "Coach",
+      "inSessionTitle": "Question rapide au coach",
+      "inSessionHint": "Réponse courte : tu es en pleine séance.",
+      "suggestions": [
+        "Je n’ai que 20 minutes aujourd’hui",
+        "Que manger après ma séance ?",
+        "Comment mieux récupérer ?",
+        "J’ai une gêne au genou au squat"
+      ],
+      "sessionSuggestions": [
+        "Je peux augmenter la charge ?",
+        "Combien de repos ici ?",
+        "Exercice trop dur, que faire ?"
+      ]
+    },
+    "reports": {
+      "generate": "Demander un bilan",
+      "types": {
+        "session": "Séance",
+        "weekly": "Semaine",
+        "monthly": "Mois",
+        "quarterly": "Trimestre",
+        "yearly": "Année",
+        "adaptation": "Ajustement"
+      },
+      "titles": {
+        "session": "Bilan de séance",
+        "weekly": "Bilan de la semaine",
+        "monthly": "Bilan du mois",
+        "quarterly": "Bilan du trimestre",
+        "yearly": "Bilan de l’année",
+        "adaptation": "Ajustement de la semaine {{week}}"
+      },
+      "period": "Du {{start}} au {{end}}",
+      "empty": "Tes bilans apparaîtront ici. Demande ton premier bilan ci-dessus.",
+      "generating": "Ton coach prépare ton bilan…",
+      "error": "Le bilan n’a pas pu être créé.",
+      "notEnough": "Pas encore assez de données sur cette période.",
+      "attendance": "Assiduité",
+      "sessions": "Séances",
+      "volume": "Tonnage",
+      "volumeChange": "vs période précédente",
+      "feeling": "Ressenti moyen",
+      "energy": "Énergie moyenne",
+      "strengths": "Points forts",
+      "improve": "À améliorer",
+      "stalled": "En stagnation",
+      "nextAdjustments": "Ajustements à venir",
+      "decision": "Décision",
+      "decisions": {
+        "continuer": "Continuer",
+        "ajuster": "Ajuster",
+        "changer_de_bloc": "Changer de bloc"
+      },
+      "milestones": "Jalons",
+      "nextGoals": "Objectifs du prochain cycle",
+      "records": "Records",
+      "bodyChange": "Corps",
+      "keyLifts": "Mouvements clés",
+      "musclesSets": "Séries par muscle",
+      "nextLoads": "Charges pour la prochaine fois",
+      "changes": "Changements",
+      "alerts": "Alertes",
+      "weekDecision": {
+        "progression": "Progression",
+        "maintien": "Maintien",
+        "decharge": "Décharge",
+        "reprise": "Reprise en douceur"
+      },
+      "from": "avant : {{name}}"
+    },
+    "session": {
+      "title": "Le mot du coach",
+      "loading": "Ton coach analyse ta séance…",
+      "error": "Le bilan du coach n’est pas disponible pour l’instant.",
+      "improve": "À améliorer"
+    },
+    "adapt": {
+      "title": "Ton coach a ajusté ta semaine",
+      "loading": "Ton coach ajuste ta semaine…",
+      "see": "Voir les changements",
+      "none": "Aucun changement : on garde le plan."
+    }
   },
   "common": {
     "retry": "Réessayer",

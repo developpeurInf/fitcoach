@@ -6,6 +6,7 @@ import { View } from 'react-native';
 
 import { Button, ChipGroup, Notice, Screen, Text, TextField } from '@/components/ui';
 import { useUserId } from '@/features/auth/store';
+import { SessionReportCard } from '@/features/coach/SessionReportCard';
 import { type FinishResult, markRecordsCelebrated, useFinishSession } from '@/features/session/api';
 import { summarize } from '@/features/session/logic';
 import { useSession } from '@/features/session/store';
@@ -170,6 +171,7 @@ function Records({ result }: { result: FinishResult }) {
             </View>
           ))
         )}
+        <SessionReportCard logId={result.log_id} />
         <Button label={t('session.done.home')} onPress={() => router.replace('/')} />
       </View>
     </Screen>
